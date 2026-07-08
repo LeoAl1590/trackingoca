@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Consulta el estado en tiempo real e historial completo de tus envíos de OCA. Rápido, seguro y sin registros.">
+  <title>OCA Tracking - Consulta de Encomiendas</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="tech-dark">
+
+  <div class="editorial-container">
+    <!-- Header -->
+    <header class="editorial-header">
+      <div class="logo-group">
+        <span class="logo-main">OCA</span>
+        <span class="logo-sub">TRACKING</span>
+      </div>
+      <button id="theme-toggle" class="btn-theme-minimal" aria-label="Cambiar tema" title="Cambiar tema">
+        <span class="theme-label-dark">OSCURO</span>
+        <span class="theme-label-light">CLARO</span>
+      </button>
+    </header>
+
+    <!-- Main Section -->
+    <main class="editorial-main">
+      <section class="intro-section">
+        <h1 class="editorial-title">Localizá tu envío</h1>
+        <p class="editorial-subtitle">Seguimiento en tiempo real sobre la plataforma de OCA. Simple. Directo.</p>
+
+        <form id="tracking-form" class="editorial-form">
+          <div class="input-container">
+            <input type="text" id="tracking-input" placeholder="Número de seguimiento (Ej: G0000251013972)" required
+              autocomplete="off" spellcheck="false" maxlength="30" aria-label="Número de seguimiento">
+          </div>
+          <button type="submit" id="search-btn" class="btn-editorial-submit">
+            <span>Buscar</span>
+            <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+
+      </section>
+
+      <!-- Loading State (Skeleton Tech) -->
+      <section id="loading-state" class="editorial-results hidden">
+        <div class="shimmer-card">
+          <div class="shimmer-header">
+            <div class="shimmer-block w-40 h-8"></div>
+            <div class="shimmer-block w-20 h-4"></div>
+          </div>
+          <div class="shimmer-rows">
+            <div class="shimmer-block w-full h-4"></div>
+            <div class="shimmer-block w-full h-4"></div>
+            <div class="shimmer-block w-60 h-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Error State -->
+      <section id="error-state" class="editorial-results hidden">
+        <div class="editorial-error-card">
+          <div class="error-badge">ERROR</div>
+          <h2 id="error-title">Envío no encontrado</h2>
+          <p id="error-message">Por favor verifique el código ingresado e intente nuevamente.</p>
+        </div>
+      </section>
+
+      <!-- Results State -->
+      <section id="results-state" class="editorial-results hidden">
+
+        <!-- Tarjeta de Estado Actual (Sleek Grid) -->
+        <div class="editorial-status-panel">
+          <div class="status-main-header">
+            <div class="status-summary-info">
+              <div class="status-meta-header">
+                <span class="editorial-meta-label">Último Estado</span>
+                <span id="status-badge" class="status-pill-badge">EN VIAJE</span>
+              </div>
+              <h2 id="current-status-title">En Viaje</h2>
+              <p id="current-status-desc">El paquete está en viaje a sucursal de destino.</p>
+            </div>
+          </div>
+
+          <div class="status-tech-details">
+            <div class="tech-meta-row">
+              <span class="tech-meta-label">ID PIEZA</span>
+              <span id="meta-tracking-number" class="tech-meta-value mono-text">-</span>
+            </div>
+            <div class="tech-meta-row">
+              <span class="tech-meta-label">ACTUALIZACIÓN</span>
+              <span id="meta-last-update" class="tech-meta-value mono-text">-</span>
+            </div>
+            <div class="tech-meta-row" id="meta-sucursal-item">
+              <span class="tech-meta-label">SUCURSAL</span>
+              <span id="meta-sucursal-name" class="tech-meta-value">-</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial / Timeline (Estilo Registro Técnico / Logs) -->
+        <div class="editorial-history-panel">
+          <h3 class="panel-section-title">Registro de Movimientos</h3>
+          <div class="logs-container" id="timeline-flow">
+            <!-- Los eventos se inyectarán como filas técnicas tipo logs de terminal -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+
+</html>
